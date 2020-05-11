@@ -17,21 +17,26 @@ class App extends Component{
 
 	componentDidMount()
 	{
-		const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
-		//Heroku is a site that allows access-control, the above line is just used for deploying prj in github
+
+    let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('Origin','http://localhost:3000');
+
 
 		const url="https://jsonplaceholder.typicode.com/users";
-		//the above url doesn't makes use of access-control header hence we will atach the url with heroku site
-
-		fetch(proxyurl +url)
+		fetch(url)
 		.then(response=> response.json())
 		.then(users => this.setState({robots : users}));
-	}
+	
+}
 
 	onSearchChange =  (event) =>
 	{
 		this.setState({ searchfield : event.target.value });
 	}
+
 	render()
 	{
 		const { robots,searchfield } = this.state;
