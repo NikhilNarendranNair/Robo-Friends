@@ -17,8 +17,13 @@ class App extends Component{
 
 	componentDidMount()
 	{
+		const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
+		//Heroku is a site that allows access-control, the above line is just used for deploying prj in github
+
 		const url="https://jsonplaceholder.typicode.com/users";
-		fetch(url)
+		//the above url doesn't makes use of access-control header hence we will atach the url with heroku site
+
+		fetch(proxy+url)
 		.then(response=> response.json())
 		.then(users => this.setState({robots : users}));
 	}
