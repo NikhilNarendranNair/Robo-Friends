@@ -23,7 +23,7 @@ class App extends Component{
 		const url="https://jsonplaceholder.typicode.com/users";
 		//the above url doesn't makes use of access-control header hence we will atach the url with heroku site
 
-		fetch(proxy+url)
+		fetch(proxyurl +url)
 		.then(response=> response.json())
 		.then(users => this.setState({robots : users}));
 	}
