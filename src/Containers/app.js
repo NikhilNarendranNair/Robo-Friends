@@ -5,6 +5,12 @@ import Scroll from '../Components/Scroll';
 import ErrorBoundary from '../Components/ErrorBoundary'
 import './App.css';
 
+
+		var express = require('express')
+		var cors = require('cors')
+		var app = express()
+
+
 class App extends Component{
 	constructor()
 	{
@@ -17,20 +23,14 @@ class App extends Component{
 
 	componentDidMount()
 	{
+ 
 
-    let headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('Origin','http://localhost:3000');
-
-
+		app.options('*', cors())
 		const url="https://jsonplaceholder.typicode.com/users";
 		fetch(url)
 		.then(response=> response.json())
 		.then(users => this.setState({robots : users}));
-	
-}
+	}
 
 	onSearchChange =  (event) =>
 	{
