@@ -6,11 +6,6 @@ import ErrorBoundary from '../Components/ErrorBoundary'
 import './App.css';
 
 
-		var express = require('express')
-		var cors = require('cors')
-		var app = express()
-
-
 class App extends Component{
 	constructor()
 	{
@@ -23,11 +18,13 @@ class App extends Component{
 
 	componentDidMount()
 	{
- 
-
-		app.options('*', cors())
-		const url="https://jsonplaceholder.typicode.com/users";
-		fetch(url)
+		fetch("https://jsonplaceholder.typicode.com/users", {
+		    mode: "cors",
+		    headers: {
+		      "Access-Control-Allow-Origin": 
+		        "https://jsonplaceholder.typicode.com/",
+		    },
+		  })
 		.then(response=> response.json())
 		.then(users => this.setState({robots : users}));
 	}
